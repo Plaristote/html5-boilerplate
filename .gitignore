@@ -1,0 +1,7 @@
+node_modules/
+bower/
+vendor/bower/
+
+# vim temporary files
+*.swo
+*.swp

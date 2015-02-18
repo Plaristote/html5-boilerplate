@@ -1,0 +1,8 @@
+{
+  "name": "html5-boilerplate",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "normalize.css": "~3.0.2"
+  }
+}
