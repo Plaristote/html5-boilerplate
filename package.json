@@ -16,6 +16,8 @@
     "main-bower-files": "^2.5.0",
     "run-sequence": "^1.0.2",
     "gulp-if": "^1.2.5",
-    "gulp-coffee": "^2.3.1"
+    "gulp-coffee": "^2.3.1",
+    "node-neat": "^1.7.1-beta1",
+    "node-bourbon": "^4.2.1-beta1"
   }
 }
