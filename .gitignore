@@ -1,6 +1,7 @@
 node_modules/
 bower/
 vendor/bower/
+spec/spec.js
 
 # vim temporary files
 *.swo
