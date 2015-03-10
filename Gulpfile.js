@@ -4,6 +4,8 @@ var bower        = require('gulp-bower');
 var bower_files  = require('main-bower-files');
 var concat       = require('gulp-concat');
 var sass         = require('gulp-sass');
+var coffee       = require('gulp-coffee');
+var gulp_if      = require('gulp-if');
 
 var paths = {
   scss: [
@@ -11,6 +13,10 @@ var paths = {
     'vendor/bower/**/*.css',
     'vendor/bower/**/*.scss',
     'src/scss/application.scss'
+  ],
+  javascript: [
+    'vendor/bower/**/*.js',
+    'src/coffee/**/*.coffee'
   ]
 };
 
@@ -29,11 +35,19 @@ gulp.task('scss', function() {
     pipe(gulp.dest('www/css'));
 });
 
+gulp.task('javascript', function() {
+  return gulp.src(paths.javascript).
+    pipe(gulp_if(/[.]coffee$/, coffee())).
+    pipe(concat('application.js')).
+    pipe(gulp.dest('www/js'));
+});
+
 gulp.task('recompile', function() {
-  run_sequence('bower', 'bower-files', ['scss']);
+  run_sequence('bower', 'bower-files', ['scss', 'javascript']);
 });
 
 gulp.task('default', ['recompile'], function() {
-  gulp.watch(['bower.json'], ['bower-files']);
-  gulp.watch(paths.scss,     ['scss']);
+  gulp.watch(['bower.json'],         ['bower-files']);
+  gulp.watch(['src/scss/**/*.scss'], ['scss']);
+  gulp.watch(paths.javascript,       ['javascript']);
 });
