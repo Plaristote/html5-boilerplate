@@ -5,7 +5,9 @@ Gulp/Bower boilerplates for html5 applications. Requires node.js installed.
 There are a few branches to this project corresponding to multiple configurations for your application.
 * `master` only brings [bower](http://bower.io/), a [sass](http://sass-lang.com/) compiler, and starts you off with [normalize.css](http://necolas.github.io/normalize.css/)
 * `coffee` brings everything from `master`, plus the ability to compile javascript and [coffeescript](http://coffeescript.org/)
+* `backbone` brings everything from `coffee`, includes Backbone and jQuery to bower.json
 * `bourbon/neat` brings everythign from `coffee`, but also includes [bourbon](https://github.com/thoughtbot/bourbon) and [neat](https://github.com/thoughtbot/neat) in your css pipeline
+* `backbone-bourbon/neat` merges `backbone` and `bourbon/neat`
 
 
 ## Developping with html5-boilerplate
