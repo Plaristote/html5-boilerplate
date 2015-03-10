@@ -15,6 +15,7 @@ var paths = {
     'src/scss/application.scss'
   ],
   javascript: [
+    'vendor/bower/underscore.js',
     'vendor/bower/**/*.js',
     'src/coffee/**/*.coffee'
   ]
