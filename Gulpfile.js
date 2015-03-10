@@ -6,6 +6,7 @@ var concat       = require('gulp-concat');
 var sass         = require('gulp-sass');
 var coffee       = require('gulp-coffee');
 var gulp_if      = require('gulp-if');
+var neat         = require('node-neat');
 
 var paths = {
   scss: [
@@ -31,7 +32,9 @@ gulp.task('bower', function() {
 
 gulp.task('scss', function() {
   return gulp.src(paths.scss).
-    pipe(sass()).
+    pipe(sass({
+      includePaths: [ 'src/scss', 'vendor/bower' ].concat(neat.includePaths)
+    })).
     pipe(concat('style.css')).
     pipe(gulp.dest('www/css'));
 });
