@@ -10,15 +10,23 @@ var paths = [
     'src/**/*.coffee'
 ];
 
-gulp.task('tests', function() {
+function setupJasmine() {
   return gulp.src(paths).
      pipe(gulp_if(/[.]coffee$/, coffee())).
      pipe(concat('spec.js')).
      pipe(gulp.dest('.')).
-     pipe(jasmine({ integration: true, abortOnFail: true })).
+     pipe(jasmine({ integration: true, abortOnFail: true }));
+}
+
+gulp.task('tests', function() {
+  return setupJasmine().
      on('error', process.exit.bind(process, 1));
 });
 
+gulp.task('tests-no-exit', function() {
+  return setupJasmine();
+});
+
 gulp.task('default', function() {
-  gulp.watch(paths, ['tests']);
+  gulp.watch(paths, ['tests-no-exit']);
 });
