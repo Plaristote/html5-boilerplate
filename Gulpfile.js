@@ -6,6 +6,7 @@ var concat       = require('gulp-concat');
 var sass         = require('gulp-sass');
 var coffee       = require('gulp-coffee');
 var gulp_if      = require('gulp-if');
+var include      = require('gulp-include');
 
 var paths = {
   scss: [
@@ -18,6 +19,11 @@ var paths = {
     'vendor/bower/underscore.js',
     'vendor/bower/**/*.js',
     'src/coffee/**/*.coffee'
+  ],
+  javascriptToCompile: [
+    'vendor/bower/underscore.js',
+    'vendor/bower/**/*.js',
+    'src/coffee/application.coffee'
   ]
 };
 
@@ -37,7 +43,8 @@ gulp.task('scss', function() {
 });
 
 gulp.task('javascript', function() {
-  return gulp.src(paths.javascript).
+  return gulp.src(paths.javascriptToCompile).
+    pipe(include()).
     pipe(gulp_if(/[.]coffee$/, coffee())).
     pipe(concat('application.js')).
     pipe(gulp.dest('www/js'));
