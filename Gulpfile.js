@@ -28,6 +28,10 @@ var paths = {
   ]
 };
 
+function isCoffeeFile(file) {
+  return file.path.match(/[.]coffee$/) != null;
+}
+
 gulp.task('bower-files', ['bower'], function() {
   return gulp.src(bower_files()).pipe(gulp.dest('./vendor/bower'));
 });
@@ -48,7 +52,7 @@ gulp.task('scss', function() {
 gulp.task('javascript', function() {
   return gulp.src(paths.javascriptToCompile).
     pipe(include()).
-    pipe(gulp_if(/[.]coffee$/, coffee())).
+    pipe(gulp_if(isCoffeeFile, coffee())).
     pipe(concat('application.js')).
     pipe(gulp.dest('www/js'));
 });
